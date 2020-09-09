@@ -1,11 +1,6 @@
-import { ObjectSchemaConstructor } from "yup";
+import { ObjectSchemaConstructor } from 'yup';
 
-const {
-  useHooks,
-  logEvent,
-  parseEvent,
-  handleUnexpectedError,
-} = require("lambda-hooks");
+import { useHooks, logEvent, parseEvent, handleUnexpectedError } from 'lambda-hooks';
 
 export const withHooks = useHooks({
   before: [logEvent, parseEvent],
@@ -23,7 +18,7 @@ export const withPathValidation = (config: {
       after: [],
       onError: [handleUnexpectedError],
     },
-    config
+    config,
   );
 };
 
@@ -31,7 +26,7 @@ const validatePaths = async (state: any) => {
   const { pathSchema } = state.config;
 
   if (!pathSchema) {
-    throw Error("missing the required path schema");
+    throw Error('missing the required path schema');
   }
 
   try {
@@ -39,7 +34,6 @@ const validatePaths = async (state: any) => {
 
     await pathSchema.validate(event.pathParameters, { strict: true });
   } catch (error) {
-    console.log("yup validation error of path parameters", error);
     state.exit = true;
     state.response = {
       statusCode: 400,
@@ -54,7 +48,7 @@ const validateEventBody = async (state: any) => {
   const { bodySchema } = state.config;
 
   if (!bodySchema) {
-    throw Error("missing the required body schema");
+    throw Error('missing the required body schema');
   }
 
   try {
@@ -62,7 +56,6 @@ const validateEventBody = async (state: any) => {
 
     await bodySchema.validate(event.body, { strict: true });
   } catch (error) {
-    console.log("yup validation error of event.body", error);
     state.exit = true;
     state.response = {
       statusCode: 400,

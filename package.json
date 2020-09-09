@@ -1,5 +1,5 @@
 {
-  "name": "sls-packages",
+  "name": "serverless-utils",
   "version": "1.0.0",
   "description": "Helper utils and packages when working with serverless lambda",
   "main": "dist/index.js",
@@ -14,7 +14,33 @@
     "typescript": "^4.0.2"
   },
   "scripts": {
-    "prepublish": "tsc",
-    "build": "tsc"
-  }
+    "test": "echo \"No test specified\" && exit 0",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "homepage": "https://github.com/praisegeek/serverless-utils#readme",
+  "bugs": {
+    "url": "https://github.com/praisegeek/serverless-utils/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/praisegeek/serverless-utils.git"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "keywords": [
+    "serverless",
+    "dyanmodb",
+    "lambda"
+  ]
 }
