@@ -1,5 +1,5 @@
 {
-  "name": "serverless-utils",
+  "name": "@praisegeek/serverless-utils",
   "version": "1.0.0",
   "description": "Helper utils and packages when working with serverless lambda",
   "main": "dist/index.js",
@@ -24,16 +24,13 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "homepage": "https://github.com/praisegeek/serverless-utils#readme",
   "bugs": {
     "url": "https://github.com/praisegeek/serverless-utils/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/praisegeek/serverless-utils.git"
+    "url": "https://github.com/praisegeek/serverless-utils"
   },
   "files": [
     "dist/**/*"
