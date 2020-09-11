@@ -1,20 +1,17 @@
-import { ObjectSchemaConstructor } from 'yup';
+import { ObjectSchemaConstructor, ObjectSchema } from 'yup';
 
 import { useHooks, logEvent, parseEvent, handleUnexpectedError } from 'lambda-hooks';
 
 export const withHooks = useHooks({
-  before: [logEvent, parseEvent],
+  before: [parseEvent],
   after: [],
   onError: [handleUnexpectedError],
 });
 
-export const withPathValidation = (config: {
-  bodySchema: ObjectSchemaConstructor;
-  pathSchema: ObjectSchemaConstructor;
-}) => {
+export const withPathValidation = (config: { bodySchema: ObjectSchema; pathSchema: ObjectSchema }) => {
   return useHooks(
     {
-      before: [logEvent, parseEvent, validatePaths, validateEventBody],
+      before: [parseEvent, validatePaths, validateEventBody],
       after: [],
       onError: [handleUnexpectedError],
     },

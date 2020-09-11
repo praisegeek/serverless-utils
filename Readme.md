@@ -1,5 +1,7 @@
 # Serverless Utils
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/praisegeek/serverless-utils) ![GitHub top language](https://img.shields.io/github/languages/top/praisegeek/serverless-utils) ![GitHub last commit](https://img.shields.io/github/last-commit/praisegeek/serverless-utils)
+
 A collection of helper utilities when working on AWS Serverless lambda.
 
 Install
