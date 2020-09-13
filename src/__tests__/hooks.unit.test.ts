@@ -30,10 +30,28 @@ describe('withHooks validation tests', () => {
 
 describe('withPathValidation validation tests', () => {
   test('withPathValidation is defined', () => {
-    expect(hooks.withPathValidation).toBeDefined();
+    expect(hooks.withValidation).toBeDefined();
   });
 
-  test('it should validate input fields and slugs in path parameters', async () => {
+  test('it should take in body and validate input fields', async () => {
+    const event = eventGenerator({
+      body: {
+        name: 'Praise',
+        email: 'praise',
+      },
+      method: 'PUT',
+    });
+
+    const res = await lamdba.withInputValidation(event, null);
+
+    expect(res).toBeDefined();
+    expect(typeof res).toBe('object');
+
+    expect(res.statusCode).toEqual(400);
+    expect(JSON.parse(res.body).error).toBe('email must be a valid email');
+  });
+
+  test('it should take in body and validate path parameters', async () => {
     const event = eventGenerator({
       body: {
         name: 'Praise',
@@ -41,7 +59,7 @@ describe('withPathValidation validation tests', () => {
       },
       method: 'PUT',
       pathParametersObject: {
-        ID: 1,
+        // ID: 1
       },
     });
 
@@ -51,6 +69,26 @@ describe('withPathValidation validation tests', () => {
     expect(typeof res).toBe('object');
 
     expect(res.statusCode).toEqual(400);
-    expect(JSON.parse(res.body).error).toBe('email must be a valid email');
+    expect(JSON.parse(res.body).error).toBe('ID is a required field');
+  });
+
+  test('it should take in body and validate input and path parameters', async () => {
+    const event = eventGenerator({
+      body: {
+        name: 'Praise',
+        email: 'praise',
+      },
+      method: 'PUT',
+      pathParametersObject: {
+        // ID: 1,
+      },
+    });
+
+    const res = await lamdba.withAllValidation(event, null);
+
+    expect(res).toBeDefined();
+    expect(typeof res).toBe('object');
+
+    expect(res.statusCode).toEqual(400);
   });
 });

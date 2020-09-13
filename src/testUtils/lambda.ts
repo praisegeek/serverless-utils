@@ -26,4 +26,8 @@ const testPathValidation = async (event: any) => {
 
 export const withHooksHandler = hooks.withHooks(testWithHooks);
 
-export const withPathValidation = hooks.withPathValidation({ bodySchema, pathSchema })(testPathValidation);
+export const withPathValidation = hooks.withValidation({ pathSchema })(testPathValidation);
+
+export const withInputValidation = hooks.withValidation({ bodySchema })(testPathValidation);
+
+export const withAllValidation = hooks.withValidation({ bodySchema, pathSchema })(testPathValidation);

@@ -1,6 +1,11 @@
-import { ObjectSchemaConstructor, ObjectSchema } from 'yup';
+import { ObjectSchema } from 'yup';
 
-import { useHooks, logEvent, parseEvent, handleUnexpectedError } from 'lambda-hooks';
+import { useHooks, parseEvent, handleUnexpectedError } from 'lambda-hooks';
+
+interface ValidationConfig {
+  bodySchema?: ObjectSchema;
+  pathSchema?: ObjectSchema;
+}
 
 export const withHooks = useHooks({
   before: [parseEvent],
@@ -8,7 +13,7 @@ export const withHooks = useHooks({
   onError: [handleUnexpectedError],
 });
 
-export const withPathValidation = (config: { bodySchema: ObjectSchema; pathSchema: ObjectSchema }) => {
+export const withValidation = (config: ValidationConfig) => {
   return useHooks(
     {
       before: [parseEvent, validatePaths, validateEventBody],
@@ -23,7 +28,8 @@ const validatePaths = async (state: any) => {
   const { pathSchema } = state.config;
 
   if (!pathSchema) {
-    throw Error('missing the required path schema');
+    // throw Error('missing the required body schema');
+    return state;
   }
 
   try {
@@ -45,7 +51,8 @@ const validateEventBody = async (state: any) => {
   const { bodySchema } = state.config;
 
   if (!bodySchema) {
-    throw Error('missing the required body schema');
+    return state;
+    // throw Error('missing the required body schema');
   }
 
   try {

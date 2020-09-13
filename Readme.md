@@ -10,6 +10,8 @@ Install
 npm i @praisegeek/serverless-utils
 ```
 
+## Usages
+
 ## Milestone
 
 - [x] DynamoDB Helpers
