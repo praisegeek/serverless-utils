@@ -1,4 +1,4 @@
-export const Responses = {
+export const responses = {
   _200: (body: { [key: string]: any }) => {
     return {
       statusCode: 200,

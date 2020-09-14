@@ -8,6 +8,8 @@
   "license": "MIT",
   "dependencies": {
     "@types/yup": "^0.29.6",
+    "aws-sdk": "^2.752.0",
+    "camelcase-keys": "^6.2.2",
     "lambda-hooks": "^0.2.0"
   },
   "devDependencies": {
@@ -46,7 +48,7 @@
   ],
   "keywords": [
     "serverless",
-    "dyanmodb",
+    "dynamodb",
     "lambda"
   ]
 }
