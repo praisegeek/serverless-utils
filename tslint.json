@@ -1,4 +1,4 @@
 {
   "extends": ["tslint:recommended", "tslint-config-prettier"],
-  "no-shadowed-variable": true
+  "no-shadowed-variable": false
 }
