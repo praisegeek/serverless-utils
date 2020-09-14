@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import * as hooks from '../hooks';
-import Dynamodb from '../dynamodb';
+// import Dynamodb from '../dynamodb';
 
 const bodySchema = yup.object({
   name: yup.string().required(),
@@ -17,14 +17,14 @@ const testWithHooks = async (event: any) => {
 
   user.member = 'admin';
 
-  const res = await Dynamodb.query('user-table', {
-    IndexName: 'roles',
-    KeyConditionExpression: 'roles = :roles',
-    ExpressionAttributeValues: {
-      ':roles': 'admins',
-    },
-    NextToken: 'a163c127-7440-4836-85a0-f3b6ef2b51b1',
-  });
+  // const res = await Dynamodb.query('user-table', {
+  //   IndexName: 'roles',
+  //   KeyConditionExpression: 'roles = :roles',
+  //   ExpressionAttributeValues: {
+  //     ':roles': 'admins',
+  //   },
+  //   NextToken: 'a163c127-7440-4836-85a0-f3b6ef2b51b1',
+  // });
 
   return user;
 };
