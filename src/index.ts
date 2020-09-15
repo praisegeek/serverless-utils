@@ -1,5 +1,5 @@
-import * as Hooks from './hooks';
-import * as Response from './responses';
-import Dynamodb, { getSort } from './dynamodb';
+import * as hooks from './hooks';
+import response from './responses';
+import dynamodb, { getSort } from './dynamodb';
 
-export { Hooks, Response, Dynamodb, getSort };
+export { hooks, response, dynamodb, getSort };

@@ -23,7 +23,7 @@ npm i @praisegeek/serverless-utils
 Example usage
 
 ```js
-import { Dynamodb as db } from '@praisegeek/serverless-utils';
+import { dynamodb as db } from '@praisegeek/serverless-utils';
 
 // Async-Await
 async () => {
@@ -56,10 +56,11 @@ db.get('user-table', 1)
 - batchWrite
 
 **Pagination**
+
 Query and Scan returns a nextToken string which is used to get more or previous items
 
 ```js
-import { Dynamodb as db } from '@praisegeek/serverless-utils';
+import { dynamodb as db } from '@praisegeek/serverless-utils';
 
 async () => {
   const admins = await db.query('user-table', {
