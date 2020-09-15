@@ -249,10 +249,7 @@ function scopeExpression(expr) {
   return result;
 }
 
-export interface PutItemParams {
-  Item: {
-    [key: string]: string | number | undefined | null;
-  };
+export interface PutItemOptions {
   ConditionExpression?: string;
   ReturnValues?: string;
 }
@@ -440,10 +437,15 @@ export default {
   /**
    * Create a new item to dynamodb table
    */
-  put: async (TableName: string, params: PutItemParams): Promise<PutItemOutput | any> => {
+  put: async (
+    TableName: string,
+    Item: { [key: string]: any },
+    options?: PutItemOptions,
+  ): Promise<PutItemOutput | any> => {
     const _params = {
       TableName,
-      ...params,
+      Item,
+      ...options,
     };
     const res = await dynamoDB.put(_params).promise();
 
