@@ -1,6 +1,6 @@
 {
   "name": "@praisegeek/serverless-utils",
-  "version": "1.0.4",
+  "version": "1.0.5-0",
   "description": "Helper utils and packages when working with serverless lambda",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
